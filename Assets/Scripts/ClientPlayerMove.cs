@@ -11,6 +11,8 @@ public class ClientPlayerMove : NetworkBehaviour
     ThirdPersonController m_ThirdPersonController;
     [SerializeField]
     PlayerInput m_PlayerInput;
+    [SerializeField]
+    Player m_player;
 
     [SerializeField]
     Transform m_CameraFollow;
@@ -33,6 +35,7 @@ public class ClientPlayerMove : NetworkBehaviour
             m_CharacterController.enabled = false;
             m_ThirdPersonController.enabled = false;
             m_PlayerInput.enabled = false;
+            m_player.enabled = false;
             return;
         }
 
@@ -40,5 +43,6 @@ public class ClientPlayerMove : NetworkBehaviour
         m_CharacterController.enabled = true;
         m_ThirdPersonController.enabled = true;
         m_PlayerInput.enabled = true;
+        m_player.enabled = true;
     }
 }

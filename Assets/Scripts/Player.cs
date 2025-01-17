@@ -5,6 +5,9 @@ using Cinemachine;
 using UnityEngine.InputSystem;
 using NUnit.Framework;
 using System.Collections.Generic;
+using UnityEngine.tvOS;
+using System.Collections;
+using UnityEditor;
 
 public class Player : NetworkBehaviour
 {
@@ -19,76 +22,87 @@ public class Player : NetworkBehaviour
     public GameObject emoteSelectUIPrefab;
     public GameObject emoteSelectUI;
 
-    [SerializeField] public List<GameObject> m_emoteList;
-
-    public Transform emotePos;
-
     [SerializeField] GameObject canvasOBJ;
 
+    [SerializeField] List<GameObject> m_emoteList;
+    private Vector3 m_emotePosition;
+    [SerializeField] Vector3 m_emotePositionOffset;
+
+    private GameObject currentSelectedEmote;
 
     private void OnEnable()
     {
+        if (emoteSelectUI == null)
+        {
+            canvasOBJ = GameObject.Find("Canvas");
+            GameObject emoteSelectUIOBJ = Instantiate(emoteSelectUIPrefab, canvasOBJ.transform) as GameObject;
+            emoteSelectUI = emoteSelectUIOBJ;
+            emoteSelectUI.SetActive(false);
+        }
     }
-    //public void OnEmote(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        emoteSelectUI.gameObject.SetActive(true);
-    //    }
-    //    else if (context.canceled)
-    //    {
-    //        emoteSelectUI.gameObject.SetActive(false);
-    //    }
-    //}
 
-    private  void Update()
+    private void Update()
     {
+        if(currentSelectedEmote != null)
+        {
+            currentSelectedEmote.transform.position = transform.position + m_emotePositionOffset;
+            currentSelectedEmote.transform.rotation = transform.rotation;
+        }
+        //if (IsOwner) { return;}
         if (Input.GetKey(KeyCode.G))
         {
-          emoteSelectUI.gameObject.SetActive(true);
+            emoteSelectUI.gameObject.SetActive(true);
         }
         else
         {
             emoteSelectUI.gameObject.SetActive(false);
         }
 
-        if (emoteSelectUI.activeSelf)
+        if (emoteSelectUI.activeSelf ) //This is a joke...
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                GameObject emote3 = Instantiate(m_emoteList[0], emotePos) as GameObject;
+                currentSelectedEmote = GameObject.Instantiate(m_emoteList[0]);
+                currentSelectedEmote.transform.localPosition = m_emotePosition;
+                currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                GameObject emote3 = Instantiate(m_emoteList[1], emotePos) as GameObject;
+                currentSelectedEmote = GameObject.Instantiate(m_emoteList[1]);
+                currentSelectedEmote.transform.localPosition = m_emotePosition;
+                currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                GameObject emote3 = Instantiate(m_emoteList[2], emotePos) as GameObject;
+                currentSelectedEmote = GameObject.Instantiate(m_emoteList[2]);
+                currentSelectedEmote.transform.localPosition = m_emotePosition;
+                currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                GameObject emote3 = Instantiate(m_emoteList[3], emotePos) as GameObject;
+                currentSelectedEmote = GameObject.Instantiate(m_emoteList[3]);
+                currentSelectedEmote.transform.localPosition = m_emotePosition;
+                currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
             }
             if (Input.GetKeyDown(KeyCode.Alpha5))
             {
-                GameObject emote3 = Instantiate(m_emoteList[4], emotePos) as GameObject;
+                currentSelectedEmote = GameObject.Instantiate(m_emoteList[4]);
+                currentSelectedEmote.transform.localPosition = m_emotePosition;
+                currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
             }
             if (Input.GetKeyDown(KeyCode.Alpha6))
             {
-                GameObject emote3 = Instantiate(m_emoteList[5], emotePos) as GameObject;
+                currentSelectedEmote = GameObject.Instantiate(m_emoteList[5]);
+                currentSelectedEmote.transform.localPosition = m_emotePosition;
+                currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
             }
         }
-
     }
+
     private void WitnessMe()
     {
         if (!IsOwner) { return; }
-        canvasOBJ = GameObject.Find("Canvas");
-        emoteSelectUI = Instantiate(emoteSelectUIPrefab, canvasOBJ.transform) as GameObject;
 
-        //emoteSelectUI.transform.localPosition = Vector3.zero;
-        //emoteSelectUI.SetActive(false);
         m_thirdPersonController = GetComponent<ThirdPersonController>();
         if (m_playerCamera == null)
         {
@@ -98,8 +112,6 @@ public class Player : NetworkBehaviour
             m_playerCamera.transform.parent = this.transform;
             print("SpawnedCamera");
         }
-        // and the player camera now targets this object's transform
-        //m_playerCamera.GetComponent<CinemachineBrain>().IsLive
     }
 
     private void RemoveCamera()
@@ -109,7 +121,6 @@ public class Player : NetworkBehaviour
             playerFollowCamera = null;
             m_playerCamera = null;
         }
-
     }
     public override void OnNetworkSpawn()
     {
