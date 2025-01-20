@@ -1043,6 +1043,7 @@ GameObject:
   - component: {fileID: 5419432233125932297}
   - component: {fileID: 4319255744205831378}
   - component: {fileID: 2219803643413214050}
+  - component: {fileID: 1818523389257501364}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1442,6 +1443,19 @@ MonoBehaviour:
   m_cameraPrefab: {fileID: 8944336655422409498, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
   playerFollowCamera: {fileID: 0}
   playerFollowCameraPrefab: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+--- !u!114 &1818523389257501364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2786a8989e16004a846f261e5446252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   emoteSelectUIPrefab: {fileID: 8277092078360592935, guid: 678b97abf5a807b4882a7981a7422c2d, type: 3}
   emoteSelectUI: {fileID: 0}
   canvasOBJ: {fileID: 0}
@@ -1453,6 +1467,8 @@ MonoBehaviour:
   - {fileID: 1970431909021279157, guid: 29347930d5e30844fbaa956e9ac942f8, type: 3}
   - {fileID: 6135799563106814101, guid: a203ef65f4093f247bcb25af6b01315d, type: 3}
   m_emotePositionOffset: {x: 0, y: 2, z: 0}
+  m_currentSelectedEmote: {fileID: 0}
+  m_usingEmote: 0
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
