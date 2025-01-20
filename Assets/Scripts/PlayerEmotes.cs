@@ -46,7 +46,35 @@ public class PlayerEmotes : NetworkBehaviour
             if (IsOwner)
             {
                 print("Step4");
-                SendEmoteServerRpc();
+                print("Step5");
+                if (emoteSelectUI.activeSelf) //This is a joke...
+                {
+                    print("We are Here!");
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {                    
+                        SendEmoteServerRpc("Alpha1");
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha2))
+                    {
+                        SendEmoteServerRpc("Alpha2");
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha3))
+                    {
+                        SendEmoteServerRpc("Alpha3");
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha4))
+                    {
+                        SendEmoteServerRpc("Alpha4");
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha5))
+                    {
+                        SendEmoteServerRpc("Alpha4");
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha6))
+                    {
+                        SendEmoteServerRpc("Alpha5");
+                    }
+                }
             }
         }
         else
@@ -56,48 +84,46 @@ public class PlayerEmotes : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SendEmoteServerRpc()
+    private void SendEmoteServerRpc(string pressedButton)
     {
-        print("Step5");
-        if (emoteSelectUI.activeSelf) //This is a joke...
+        switch(pressedButton)  //The joke continues
         {
-            print("We are Here!");
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
+            case ("Alpha1"):
                 m_currentSelectedEmote = GameObject.Instantiate(m_emoteList[0]);
                 m_currentSelectedEmote.transform.localPosition = transform.position + m_emotePositionOffset;
                 m_currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
+                break;
+
+            case ("Alpha2"):
                 m_currentSelectedEmote = GameObject.Instantiate(m_emoteList[1]);
                 m_currentSelectedEmote.transform.localPosition = transform.position + m_emotePositionOffset;
                 m_currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
+                break;
+
+            case ("Alpha3"):
                 m_currentSelectedEmote = GameObject.Instantiate(m_emoteList[2]);
                 m_currentSelectedEmote.transform.localPosition = transform.position + m_emotePositionOffset;
                 m_currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
+                break;
+
+            case ("Alpha4"):
                 m_currentSelectedEmote = GameObject.Instantiate(m_emoteList[3]);
                 m_currentSelectedEmote.transform.localPosition = transform.position + m_emotePositionOffset;
                 m_currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
+                break;
+
+            case ("Alpha5"):
                 m_currentSelectedEmote = GameObject.Instantiate(m_emoteList[4]);
                 m_currentSelectedEmote.transform.localPosition = transform.position + m_emotePositionOffset;
                 m_currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
+                break;
+            case ("Alpha6"):
                 m_currentSelectedEmote = GameObject.Instantiate(m_emoteList[5]);
                 m_currentSelectedEmote.transform.localPosition = transform.position + m_emotePositionOffset;
                 m_currentSelectedEmote.GetComponent<NetworkObject>().Spawn();
-            }
-        }
+                break;
+
+            default: break;
+        }      
     }
 }

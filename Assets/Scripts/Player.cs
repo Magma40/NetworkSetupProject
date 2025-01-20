@@ -21,8 +21,6 @@ public class Player : NetworkBehaviour
 
     private void WitnessMe()
     {
-        if (!IsOwner) { return; }
-
         m_thirdPersonController = GetComponent<ThirdPersonController>();
         if (m_playerCamera == null)
         {
