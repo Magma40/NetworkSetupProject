@@ -7,7 +7,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine.tvOS;
 using System.Collections;
-using UnityEditor;
 
 public class Player : NetworkBehaviour
 {
