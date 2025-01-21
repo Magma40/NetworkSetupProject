@@ -38,18 +38,12 @@ public class PlayerEmotes : NetworkBehaviour
         if (Input.GetKey(KeyCode.G))
         {
             emoteSelectUI.gameObject.SetActive(true);
-            print("Step1");
             if (m_usingEmote) return;
-            print("Step2");
             m_usingEmote = true;
-            print("Step3");
             if (IsOwner)
             {
-                print("Step4");
-                print("Step5");
                 if (emoteSelectUI.activeSelf) //This is a joke...
                 {
-                    print("We are Here!");
                     if (Input.GetKeyDown(KeyCode.Alpha1))
                     {                    
                         SendEmoteServerRpc("Alpha1");

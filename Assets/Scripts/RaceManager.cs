@@ -84,9 +84,7 @@ public class RaceManager : NetworkBehaviour
         this.transform.GetChild(0).gameObject.SetActive(false);
         this.gameObject.GetComponent<BoxCollider>().enabled = false;
 
-        m_checkPointList[0].gameObject.SetActive(true);
         ActiveRace = true;
-
         int currentCheckpointSpawning = 0;
         foreach (Transform obj in m_checkPointTransforms)
         {
@@ -112,6 +110,7 @@ public class RaceManager : NetworkBehaviour
             gameObject.SetActive(false);
             currentSettingOBJ++;
         }
+        m_checkPointList[0].SetActive(true);
     }
 
     [ServerRpc(RequireOwnership = false)]

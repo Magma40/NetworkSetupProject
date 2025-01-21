@@ -13,7 +13,6 @@ public class MovingWallScript : MonoBehaviour
        StartCoroutine(MovingWall());
     }
 
-
     public float lerpedValue;
     public float duration = 3;
     private IEnumerator MovingWall()
@@ -42,19 +41,5 @@ public class MovingWallScript : MonoBehaviour
             }
         }
         StartCoroutine(MovingWall());
-
-        //if (movingTowards)
-        //{
-        //  transform.position = Vector3.Lerp(transform.position, endPos, speed * Time.deltaTime);
-        //  yield return null;
-        //  movingTowards = false;
-        //}
-        //else
-        //{
-        //  transform.position = Vector3.Lerp(transform.position, startPos, speed * Time.deltaTime);
-        //  yield return null;
-        //  movingTowards = true;
-        //}
-        //StartCoroutine(MovingWall());
     }
 }
