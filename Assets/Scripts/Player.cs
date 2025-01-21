@@ -5,7 +5,6 @@ using Cinemachine;
 using UnityEngine.InputSystem;
 using NUnit.Framework;
 using System.Collections.Generic;
-using UnityEngine.tvOS;
 using System.Collections;
 
 public class Player : NetworkBehaviour

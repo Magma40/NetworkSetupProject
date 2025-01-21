@@ -1,7 +1,5 @@
 using UnityEngine;
 using Unity.Netcode;
-using UnityEditor.PackageManager;
-
 
 public class CheckpointTrigger : NetworkBehaviour
 {
